@@ -22,7 +22,7 @@ def get_file_content():
         )
     if len(sys.argv) > 4:
         sys.exit(
-            "Too many arguments, use the following template <source_file> <output_file> <port_number> "
+            "Too many arguments, use the following template <source_file> <output_file> <port_number>"
         )
     else:
         try:
@@ -51,7 +51,8 @@ def work(variable, port):
             f"Process {multiprocessing.current_process().name} ended working on task {variable}",
             flush=True,
         )
-        return check_output(cmd, shell=True).decode("utf-8").lstrip()
+        output = f"HOST: {variable}\n"
+        return output + check_output(cmd, shell=True).decode("utf-8").lstrip()
     except CalledProcessError as e:
         return repr(e).split()[7]
 
